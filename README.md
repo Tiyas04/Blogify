@@ -57,7 +57,7 @@ Blog/
 ### Install Dependencies
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### Configure Environment Variables
