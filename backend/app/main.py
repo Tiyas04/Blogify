@@ -1,6 +1,6 @@
-from pymongo import database
 from fastapi import FastAPI
 from app.config.db import db
+from app.routes.auth_route import router as auth_router
 
 app = FastAPI(
     title="Blogify",
@@ -22,3 +22,5 @@ async def health():
         "status": "Connected",
         "collections": collections
     }
+
+app.include_router(auth_router)
