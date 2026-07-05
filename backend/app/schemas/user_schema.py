@@ -5,7 +5,6 @@ from datetime import datetime
 class UserCreate(BaseModel):
     name: str = Field(..., min_length=3, max_length=100, description="Name of the user")
     email: EmailStr
-    avatar: Optional[str] = None
     password: str = Field(..., min_length=6, max_length=100, description="Password of the user")
     bio: Optional[str] = Field(None, max_length=200, description="Bio of the user")
 
