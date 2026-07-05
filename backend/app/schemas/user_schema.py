@@ -15,7 +15,6 @@ class UserLogin(BaseModel):
 class UserUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=3, max_length=100)
     bio: Optional[str] = Field(None, max_length=200)
-    avatar: Optional[str] = None
 
 class UserResponse(BaseModel):
     id: str

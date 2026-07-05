@@ -24,3 +24,6 @@ async def upload_to_cloudinary(
         "url":result["secure_url"],
         "public_id": result["public_id"]
     }
+
+async def delete_from_cloudinary(public_id: str):
+    return cloudinary.uploader.destroy(public_id)

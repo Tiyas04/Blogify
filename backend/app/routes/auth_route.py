@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status, UploadFile, File, Form, Response, Depends
-from app.schemas.user_schema import UserCreate, UserLogin
-from app.services.auth_service import register_user, login_user, logout_user
+from app.schemas.user_schema import UserCreate, UserLogin, UserUpdate
+from app.services.auth_service import register_user, login_user, logout_user, update_user, get_user
 from app.dependencies.auth_dependency import get_current_user
 
 router = APIRouter(
@@ -104,4 +104,42 @@ async def logout(
         "success":True,
         "message": "Logged out successfully",
         "data":None
+    }
+
+@router.post(
+    "/update-profile",
+    status_code = status.HTTP_200_OK
+)
+async def update_profile(
+    response: Response,
+    current_user= Depends(get_current_user),
+    name: str = Form(...),
+    bio: str | None = Form(None),
+    avatar: UploadFile | None = File(None),
+):
+    user = UserUpdate(
+        name = name,
+        bio = bio
+    )
+
+    result = await update_user(current_user["id"], user, avatar)
+    
+    return {
+        "success": result["success"],
+        "message": result["message"],
+        "data": result["data"]
+    }
+
+@router.get(
+    "/profile",
+    status_code=status.HTTP_200_OK
+)
+async def get_profile(current_user= Depends(get_current_user)):
+
+    result = await get_user(current_user["id"])
+
+    return {
+        "success": result["success"],
+        "message": result["message"],
+        "data": result["data"]
     }
