@@ -106,7 +106,7 @@ async def logout(
         "data":None
     }
 
-@router.post(
+@router.patch(
     "/update-profile",
     status_code = status.HTTP_200_OK
 )
