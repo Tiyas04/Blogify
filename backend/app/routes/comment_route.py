@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Path, status
 from app.dependencies.auth_dependency import get_current_user
 from app.schemas.comment_schema import CommentCreate, CommentUpdate
-from app.services.comments_services import create_comment, get_all_comments, update_comment, delete_comment
+from app.services.comments_service import create_comment, get_all_comments, update_comment, delete_comment
 
 router = APIRouter(
     prefix="/comments",

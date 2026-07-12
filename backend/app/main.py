@@ -3,6 +3,7 @@ from app.config.db import db
 from app.routes.auth_route import router as auth_router
 from app.routes.blog_route import router as blog_router
 from app.routes.comment_route import router as comment_router
+from app.routes.likes_route import router as likes_router
 
 app = FastAPI(
     title="Blogify",
@@ -28,3 +29,4 @@ async def health():
 app.include_router(auth_router)
 app.include_router(blog_router)
 app.include_router(comment_router)
+app.include_router(likes_router)
