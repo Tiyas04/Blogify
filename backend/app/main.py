@@ -1,14 +1,25 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.config.db import db
 from app.routes.auth_route import router as auth_router
 from app.routes.blog_route import router as blog_router
 from app.routes.comment_route import router as comment_router
 from app.routes.likes_route import router as likes_router
 
+origins = ["*"]
+
 app = FastAPI(
     title="Blogify",
     description="A blogging website",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
