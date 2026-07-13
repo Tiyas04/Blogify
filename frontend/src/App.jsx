@@ -10,7 +10,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 // Layout & Pages
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import Background from './components/Background';
+import Background from './components/background';
 import TiltedMarquee from './components/TiltedMarquee';
 import Home from './pages/home';
 import Auth from './pages/auth';
