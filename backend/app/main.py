@@ -1,3 +1,4 @@
+from app.config.settings import LIVE_URL
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config.db import db
@@ -6,7 +7,7 @@ from app.routes.blog_route import router as blog_router
 from app.routes.comment_route import router as comment_router
 from app.routes.likes_route import router as likes_router
 
-origins = ["*"]
+origins = [LIVE_URL]
 
 app = FastAPI(
     title="Blogify",
