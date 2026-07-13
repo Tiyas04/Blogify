@@ -131,13 +131,10 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-4.5">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-text-primary transition-colors" title="GitHub">
+            <a href="https://github.com/Tiyas04/blogify" target="_blank" rel="noreferrer" className="hover:text-text-primary transition-colors" title="GitHub">
               <CodeXml className="w-4.5 h-4.5" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-text-primary transition-colors" title="Twitter">
-              <Earth className="w-4.5 h-4.5" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-text-primary transition-colors" title="LinkedIn">
+            <a href="https://linkedin.com/Tiyas04" target="_blank" rel="noreferrer" className="hover:text-text-primary transition-colors" title="LinkedIn">
               <User className="w-4.5 h-4.5" />
             </a>
             <a href="/rss.xml" className="hover:text-text-primary transition-colors" title="RSS Feed">
