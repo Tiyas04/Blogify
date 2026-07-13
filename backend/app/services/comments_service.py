@@ -17,6 +17,12 @@ async def create_comment(
     comment: CommentCreate,
     current_user: dict
 ):
+    if not current_user or not isinstance(current_user, dict) or "id" not in current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required to comment on a blog",
+        )
+
     try:
         object_id = ObjectId(blog_id)
     except InvalidId:
@@ -122,6 +128,12 @@ async def update_comment(
     comment:CommentUpdate,
     current_user:dict
 ):
+    if not current_user or not isinstance(current_user, dict) or "id" not in current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required to edit comments",
+        )
+
     try:
         object_id = ObjectId(comment_id)
 
@@ -188,6 +200,12 @@ async def delete_comment(
     comment_id:str,
     current_user:dict
 ):
+    if not current_user or not isinstance(current_user, dict) or "id" not in current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required to delete comments",
+        )
+
     try:
         object_id = ObjectId(comment_id)
 

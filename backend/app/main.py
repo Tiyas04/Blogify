@@ -7,7 +7,13 @@ from app.routes.blog_route import router as blog_router
 from app.routes.comment_route import router as comment_router
 from app.routes.likes_route import router as likes_router
 
-origins = [LIVE_URL]
+origins = [
+    LIVE_URL,
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:5174"
+]
 
 app = FastAPI(
     title="Blogify",

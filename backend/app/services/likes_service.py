@@ -13,6 +13,11 @@ async def toggle_like(
     blog_id: str,
     current_user: dict,
 ):
+    if not current_user or not isinstance(current_user, dict) or "id" not in current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required to like a blog",
+        )
 
     try:
         object_id = ObjectId(blog_id)
@@ -129,6 +134,11 @@ async def is_blog_liked(
     blog_id: str,
     current_user: dict,
 ):
+    if not current_user or not isinstance(current_user, dict) or "id" not in current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required to check like status",
+        )
 
     try:
         object_id = ObjectId(blog_id)

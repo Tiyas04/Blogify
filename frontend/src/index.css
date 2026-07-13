@@ -1,111 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design system font families */
+  --font-sans: "Mulish", sans-serif;
+  --font-body: "Mulish", sans-serif;
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-brand: "Outfit", sans-serif;
+
+  /* Theme color names mapping to dynamic CSS variables */
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-card: var(--bg-card);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-border-base: var(--border-base);
+  --color-success-base: var(--success-base);
+  --color-danger-base: var(--danger-base);
+}
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --bg-base: #F8F7F4;       /* Background */
+  --bg-surface: #FCFCFA;    /* Paper */
+  --bg-card: #FFFFFF;       /* Card */
+  --text-primary: #111111;  /* Heading */
+  --text-secondary: #3F3F46;/* Body */
+  --text-muted: #71717A;    /* Muted */
+  --border-base: #E7E5E4;   /* Border */
+  --accent-primary: #E4E4E7;/* Accent */
+  --accent-hover: #D4D4D8;
+  --success-base: #16A34A;
+  --danger-base: #DC2626;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* Cyber background parameters */
+  --grid-line-color: rgba(18, 24, 36, 0.03);
+  --watermark-text-color: rgba(18, 24, 36, 0.05);
+  --watermark-border-color: rgba(18, 24, 36, 0.03);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+.dark {
+  --bg-base: #161616;       /* Background */
+  --bg-surface: #1F1F1F;    /* Surface/Paper */
+  --bg-card: #262626;       /* Card */
+  --text-primary: #F5F5F4;  /* Primary Text */
+  --text-secondary: #D6D3D1;/* Body Text */
+  --text-muted: #A8A29E;    /* Muted */
+  --border-base: #3F3F46;   /* Border */
+  --accent-primary: #E4E4E7;/* Accent */
+  --accent-hover: #D4D4D8;
+  --success-base: #22C55E;
+  --danger-base: #EF4444;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  /* Cyber background parameters */
+  --grid-line-color: rgba(245, 245, 244, 0.015);
+  --watermark-text-color: rgba(245, 245, 244, 0.035);
+  --watermark-border-color: rgba(245, 245, 244, 0.02);
 }
 
+/* Base style resets and transitions */
 body {
-  margin: 0;
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+  background-color: var(--bg-base);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* Custom premium scrollbar style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
+::-webkit-scrollbar-thumb {
+  background: var(--border-base);
   border-radius: 4px;
-  color: var(--text-h);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Cyber Grid Background style */
+.grid-bg {
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Floating Watermark Tags styling */
+.watermark-tag {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--watermark-text-color);
+  border: 1.5px solid var(--watermark-border-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background-color: var(--bg-surface);
+  box-shadow: 2px 2px 0px rgba(18, 24, 36, 0.01);
+  transition: opacity 300ms ease, background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+  opacity: 0.65;
+}
+
+/* Float Animations for Background Tags */
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0px) rotate(-10deg); }
+  50% { transform: translateY(-12px) rotate(-8deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0px) rotate(8deg); }
+  50% { transform: translateY(-8px) rotate(10deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0px) rotate(-6deg); }
+  50% { transform: translateY(-15px) rotate(-8deg); }
+}
+
+.animate-float-1 {
+  animation: float-1 8s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 7s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-3 9s ease-in-out infinite;
+}
+
+/* Infinite Tilted Marquee Tape animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 35s linear infinite;
 }
