@@ -1,3 +1,4 @@
+from app.config.settings import COOKIE_SECURE, COOKIE_SAMESITE
 from fastapi import APIRouter, status, UploadFile, File, Form, Response, Depends
 from app.schemas.user_schema import UserCreate, UserLogin, UserUpdate
 from app.services.auth_service import register_user, login_user, logout_user, update_user, get_user
@@ -33,8 +34,8 @@ async def register(
         key="access_token",
         value=result["tokens"]["access_token"],
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=60 * 30,
     )
 
@@ -42,15 +43,16 @@ async def register(
         key="refresh_token",
         value=result["tokens"]["refresh_token"],
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=60 * 60 * 24 * 7,
     )
 
     return {
-        "success":result["success"],
-        "message":result["message"],
-        "data":result["data"]
+        "success": result["success"],
+        "message": result["message"],
+        "data": result["data"],
+        "tokens": result["tokens"]
     }
 
 @router.post(
@@ -67,8 +69,8 @@ async def login(
         key="access_token",
         value=result["tokens"]["access_token"],
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=60*30
     )
 
@@ -76,15 +78,16 @@ async def login(
         key="refresh_token",
         value=result["tokens"]["refresh_token"],
         httponly=True,
-        secure=False,
-        samesite="lax",
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
         max_age=60*60*24*7
     )
 
-    return{
-        "success":result["success"],
-        "message":result["message"],
-        "data":result["data"]
+    return {
+        "success": result["success"],
+        "message": result["message"],
+        "data": result["data"],
+        "tokens": result["tokens"]
     }
 
 @router.post(
@@ -97,8 +100,18 @@ async def logout(
 ):
     await logout_user(current_user["id"])
 
-    response.delete_cookie("access_token")
-    response.delete_cookie("refresh_token")
+    response.delete_cookie(
+        key="access_token",
+        httponly=True,
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+    )
+    response.delete_cookie(
+        key="refresh_token",
+        httponly=True,
+        secure=COOKIE_SECURE,
+        samesite=COOKIE_SAMESITE,
+    )
 
     return {
         "success":True,

@@ -9,6 +9,15 @@ const api = axios.create({
   },
 });
 
+// Request interceptor to attach token fallback if available in localStorage
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // Response interceptor to handle errors globally
 api.interceptors.response.use(
   (response) => response.data, // Simplify data access in queries

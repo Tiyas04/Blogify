@@ -7,16 +7,18 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch user profile on mount to check if already authenticated (via HTTPOnly cookie)
+  // Fetch user profile on mount to check if already authenticated (via HTTPOnly cookie or Header)
   const checkAuthStatus = async () => {
     try {
       const response = await api.get('/auth/profile');
       if (response?.success && response?.data) {
         setUser(response.data);
       } else {
+        localStorage.removeItem('access_token');
         setUser(null);
       }
     } catch (error) {
+      localStorage.removeItem('access_token');
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -30,6 +32,9 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await api.post('/auth/login', { email, password });
+      if (response?.tokens?.access_token) {
+        localStorage.setItem('access_token', response.tokens.access_token);
+      }
       if (response?.success && response?.data) {
         setUser(response.data);
       }
@@ -41,10 +46,12 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (formData) => {
     try {
-      // Must use multipart/form-data headers for file upload
       const response = await api.post('/auth/register', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      if (response?.tokens?.access_token) {
+        localStorage.setItem('access_token', response.tokens.access_token);
+      }
       if (response?.success && response?.data) {
         setUser(response.data);
       }
@@ -74,6 +81,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
+      localStorage.removeItem('access_token');
       setUser(null);
     }
   };

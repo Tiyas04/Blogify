@@ -92,9 +92,7 @@ const WritePost = () => {
 
   // Create Blog Mutation
   const createMutation = useMutation({
-    mutationFn: (formData) => api.post('/blogs/create-blog', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    }),
+    mutationFn: (formData) => api.post('/blogs/create-blog', formData),
     onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
       navigate(`/blog/${res.data.id}`);
@@ -106,9 +104,7 @@ const WritePost = () => {
 
   // Edit Blog Mutation
   const updateMutation = useMutation({
-    mutationFn: (formData) => api.patch(`/blogs/update-blog/${id}`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    }),
+    mutationFn: (formData) => api.patch(`/blogs/update-blog/${id}`, formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
       queryClient.invalidateQueries({ queryKey: ['blog', id] });
