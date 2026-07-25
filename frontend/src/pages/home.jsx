@@ -27,8 +27,8 @@ const Home = () => {
     queryFn: () => api.get('/blogs/get-all-blogs?limit=5&sort=popular'), // sort by popularity (likes/comments)
   });
 
-  const blogs = data?.data?.blogs || [];
-  const totalPages = data?.data?.total_pages || 1;
+  const blogs = Array.isArray(data?.data) ? data.data : (data?.data?.blogs || []);
+  const totalPages = data?.data?.total_pages || data?.pagination?.pages || 1;
 
   const featuredBlog = blogs[0];
   const latestBlogs = blogs.slice(1);

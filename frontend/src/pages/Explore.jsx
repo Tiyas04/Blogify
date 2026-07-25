@@ -42,8 +42,8 @@ const Explore = () => {
     keepPreviousData: true,
   });
 
-  const blogs = data?.data?.blogs || [];
-  const totalPages = data?.data?.total_pages || 1;
+  const blogs = Array.isArray(data?.data) ? data.data : (data?.data?.blogs || []);
+  const totalPages = data?.data?.total_pages || data?.pagination?.pages || 1;
 
   const updateFilters = (updates) => {
     const newParams = new URLSearchParams(searchParams);

@@ -25,7 +25,7 @@ export const getReadingTime = (text) => {
 
 // Featured Card: Large horizontal layout
 export const FeaturedCard = ({ blog }) => {
-  if (!blog) return null;
+  if (!blog || !blog.id || blog.id === 'undefined') return null;
   const { id, title, content, cover_image, category, author, likes_count, comments_count, created_at } = blog;
 
   return (
@@ -107,7 +107,7 @@ export const FeaturedCard = ({ blog }) => {
 
 // Blog Card: Standard vertical card
 export const BlogCard = ({ blog }) => {
-  if (!blog) return null;
+  if (!blog || !blog.id || blog.id === 'undefined') return null;
   const { id, title, content, cover_image, category, author, likes_count, comments_count, created_at } = blog;
 
   return (

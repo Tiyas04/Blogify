@@ -43,11 +43,8 @@ const SearchModal = ({ isOpen, onClose }) => {
       setLoading(true);
       try {
         const response = await api.get(`/blogs/get-all-blogs?search=${encodeURIComponent(query)}&limit=5`);
-        if (response?.data?.blogs) {
-          setResults(response.data.blogs);
-        } else {
-          setResults([]);
-        }
+        const blogResults = Array.isArray(response?.data) ? response.data : (response?.data?.blogs || []);
+        setResults(blogResults);
       } catch (error) {
         console.error('Search error:', error);
         setResults([]);

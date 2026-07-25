@@ -110,21 +110,27 @@ async def get_all_blogs(
         blog.pop("cover_image_public_id",None)
 
     return {
-        "success":True,
-        "data":blog_list,
-        "pagination":{
-            "total_blogs":total,
-            "page":page,
-            "limit":limit,
-            "pages":(total + limit -1) // limit
+        "success": True,
+        "data": {
+            "blogs": blog_list,
+            "total_blogs": total,
+            "page": page,
+            "limit": limit,
+            "total_pages": (total + limit - 1) // limit if limit > 0 else 1
+        },
+        "pagination": {
+            "total_blogs": total,
+            "page": page,
+            "limit": limit,
+            "pages": (total + limit - 1) // limit if limit > 0 else 1
         }
     }
     
 async def get_blog_by_id(blog_id: str):
     if not blog_id or not ObjectId.is_valid(blog_id):
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid blog ID format"
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Blog not found"
         )
     
     blog = await blogs.find_one(

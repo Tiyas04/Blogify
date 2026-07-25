@@ -43,7 +43,7 @@ const Profile = () => {
     queryFn: () => api.get('/blogs/get-all-blogs?limit=50'), // Fetch up to 50 blogs to do high-fidelity client filter
   });
 
-  const blogs = allBlogsResponse?.data?.blogs || [];
+  const blogs = Array.isArray(allBlogsResponse?.data) ? allBlogsResponse.data : (allBlogsResponse?.data?.blogs || []);
   // Filter blogs written by the current logged-in user
   const myBlogs = blogs.filter(b => b.author?.id === currentUser?.id);
 
