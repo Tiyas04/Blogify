@@ -62,11 +62,13 @@ const WritePost = () => {
     }
   }, [watchedCoverImage]);
 
+  const isValidBlogId = !!id && id !== 'undefined' && id !== 'null' && id.length === 24;
+
   // Fetch blog data if in edit mode
   const { data: blogResponse, isLoading } = useQuery({
     queryKey: ['edit-blog', id],
     queryFn: () => api.get(`/blogs/${id}`),
-    enabled: isEditMode,
+    enabled: isEditMode && isValidBlogId,
   });
 
   // Pre-fill form when editing

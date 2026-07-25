@@ -1,7 +1,6 @@
 from app.utils.cloudinary import delete_from_cloudinary
 from pymongo import ASCENDING, DESCENDING
 from bson import ObjectId
-from bson.errors import InvalidId
 from datetime import datetime, timezone
 from fastapi import HTTPException, UploadFile, status
 from app.config.db import db
@@ -25,46 +24,43 @@ async def create_blog(blog: BlogCreate, current_user: dict, cover_image: UploadF
         cover_image_url = upload_cover_image["url"]
         cover_image_public_id = upload_cover_image["public_id"]
 
+    author_info = {
+        "id": current_user["id"],
+        "name": current_user.get("name", ""),
+        "email": current_user.get("email", ""),
+        "avatar": current_user.get("avatar") or current_user.get("avatar_url")
+    }
+
     blog_document = {
-        "title":blog.title,
-        "content":blog.content,
-        "category":blog.category,
-        "tags":blog.tags,
-        "cover_image_public_id":cover_image_public_id,
-        "cover_image_url":cover_image_url,
-        "author":{
-            "id":current_user["id"],
-            "username":current_user["username"],
-            "name":current_user["name"],
-            "avatar_url":current_user.get("avatar_url",None)
-        },
-        "likes_count":0,
-        "comments_count":0,
-        "created_at":datetime.now(timezone.utc),
-        "updated_at":datetime.now(timezone.utc)
+        "title": blog.title,
+        "content": blog.content,
+        "category": blog.category,
+        "tags": blog.tags,
+        "cover_image_public_id": cover_image_public_id,
+        "cover_image_url": cover_image_url,
+        "author": author_info,
+        "likes_count": 0,
+        "comments_count": 0,
+        "created_at": datetime.now(timezone.utc),
+        "updated_at": datetime.now(timezone.utc)
     }
 
     result = await blogs.insert_one(blog_document)
 
     blog_data = {
         "id": str(result.inserted_id),
-        "title":blog.title,
-        "content":blog.content,
-        "category":blog.category,
-        "tags":blog.tags,
-            "cover_image_public_id":cover_image_public_id,
-            "cover_image_url":cover_image_url,
-            "author":{
-                "id":current_user["id"],
-                "username":current_user["username"],
-                "name":current_user["name"],
-                "avatar_url":current_user.get("avatar_url",None)
-            },
-            "likes_count":0,
-            "comments_count":0,
-            "created_at":datetime.now(timezone.utc),
-            "updated_at":datetime.now(timezone.utc)
-        }
+        "title": blog.title,
+        "content": blog.content,
+        "category": blog.category,
+        "tags": blog.tags,
+        "cover_image_public_id": cover_image_public_id,
+        "cover_image_url": cover_image_url,
+        "author": author_info,
+        "likes_count": 0,
+        "comments_count": 0,
+        "created_at": datetime.now(timezone.utc),
+        "updated_at": datetime.now(timezone.utc)
+    }
 
     return {
         "success": True,
@@ -124,55 +120,51 @@ async def get_all_blogs(
         }
     }
     
-async def get_blog_by_id(blog_id:str):
-    try:
-        object_id = ObjectId(blog_id)
-
-    except InvalidId:
+async def get_blog_by_id(blog_id: str):
+    if not blog_id or not ObjectId.is_valid(blog_id):
         raise HTTPException(
-            status_code = status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="Invalid blog ID format"
         )
     
     blog = await blogs.find_one(
         {
-            "_id":object_id
+            "_id": ObjectId(blog_id)
         }
     )
 
     if not blog:
         raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Blog not found"
         )
 
     blog["id"] = str(blog.pop("_id"))
-
-    blog.pop("cover_image_public_id",None)
+    blog.pop("cover_image_public_id", None)
 
     return {
-        "success":True,
-        "message":"Blog fetched successfully",
-        "data":blog
+        "success": True,
+        "message": "Blog fetched successfully",
+        "data": blog
     }
 
 async def update_blog(
-    blog_id:str,
-    blog:BlogUpdate,
-    current_user:dict,
-    cover_image:UploadFile | None =None
+    blog_id: str,
+    blog: BlogUpdate,
+    current_user: dict,
+    cover_image: UploadFile | None = None
 ):
-    try:
-        object_id = ObjectId(blog_id)
-    except InvalidId:
+    if not blog_id or not ObjectId.is_valid(blog_id):
         raise HTTPException(
-            status_code = status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="Invalid blog ID format"
         )
 
+    object_id = ObjectId(blog_id)
+
     existing_blog = await blogs.find_one(
         {
-            "_id":object_id
+            "_id": object_id
         }
     )
 
@@ -209,15 +201,15 @@ async def update_blog(
 
     await blogs.update_one(
         {
-            "_id":object_id
+            "_id": object_id
         },
         {
-            "$set":update_data
+            "$set": update_data
         }
     )
 
     updated_blog = await blogs.find_one({
-        "_id":object_id
+        "_id": object_id
     })
 
     if not updated_blog:
@@ -227,30 +219,29 @@ async def update_blog(
         )
 
     updated_blog["id"] = str(updated_blog.pop("_id"))
-
-    updated_blog.pop("cover_image_public_id",None)
+    updated_blog.pop("cover_image_public_id", None)
 
     return {
-        "success":True,
-        "message":"Blog updated successfully",
-        "data":updated_blog
+        "success": True,
+        "message": "Blog updated successfully",
+        "data": updated_blog
     }
 
 async def delete_blog(
-    blog_id:str,
-    current_user:dict
+    blog_id: str,
+    current_user: dict
 ):
-    try:
-        object_id = ObjectId(blog_id)
-    except InvalidId:
+    if not blog_id or not ObjectId.is_valid(blog_id):
         raise HTTPException(
-            status_code = status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="Invalid blog ID format"
         )
 
+    object_id = ObjectId(blog_id)
+
     existing_blog = await blogs.find_one(
         {
-            "_id":object_id
+            "_id": object_id
         }
     )
 
@@ -273,11 +264,11 @@ async def delete_blog(
 
     await blogs.delete_one(
         {
-            "_id":object_id
+            "_id": object_id
         }
     )
 
     return {
-        "success":True,
-        "message":"Blog deleted successfully"
+        "success": True,
+        "message": "Blog deleted successfully"
     }

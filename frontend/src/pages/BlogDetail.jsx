@@ -32,10 +32,13 @@ const BlogDetail = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isValidBlogId = !!id && id !== 'undefined' && id !== 'null' && id.length === 24;
+
   // Fetch blog data
   const { data: blogResponse, isLoading, error } = useQuery({
     queryKey: ['blog', id],
     queryFn: () => api.get(`/blogs/${id}`),
+    enabled: isValidBlogId,
   });
   const blog = blogResponse?.data;
 
@@ -43,7 +46,7 @@ const BlogDetail = () => {
   const { data: commentsResponse } = useQuery({
     queryKey: ['comments', id],
     queryFn: () => api.get(`/comments/blog/${id}`),
-    enabled: !!id,
+    enabled: isValidBlogId,
   });
   const comments = commentsResponse?.data || [];
 
@@ -51,7 +54,7 @@ const BlogDetail = () => {
   const { data: isLikedResponse } = useQuery({
     queryKey: ['liked', id],
     queryFn: () => api.get(`/likes/blog/${id}/liked`),
-    enabled: !!id && isAuthenticated,
+    enabled: isValidBlogId && isAuthenticated,
   });
   const isLiked = isLikedResponse?.data?.liked || false;
 
@@ -59,7 +62,7 @@ const BlogDetail = () => {
   const { data: likesCountResponse } = useQuery({
     queryKey: ['likesCount', id],
     queryFn: () => api.get(`/likes/blog/${id}`),
-    enabled: !!id,
+    enabled: isValidBlogId,
   });
   const likesCount = likesCountResponse?.data?.likes_count ?? (blog?.likes_count || 0);
 
