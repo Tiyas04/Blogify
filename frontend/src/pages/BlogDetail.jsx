@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import CategoryBadge from '../components/ui/CategoryBadge';
 import { AuthorCard, CommentCard, formatDate, getReadingTime } from '../components/ui/Cards';
 import { BlogDetailSkeleton } from '../components/ui/LoadingSkeleton';
+import Button from '../components/ui/Button';
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -250,7 +251,7 @@ const BlogDetail = () => {
         </p>
         <Link
           to="/"
-          className="inline-flex items-center justify-center font-heading font-semibold rounded-[16px] px-6 py-3 bg-text-primary text-bg-base hover:bg-accent-primary hover:text-white transition-all"
+          className="inline-flex items-center justify-center font-heading font-semibold rounded-2xl px-6 py-3 bg-text-primary text-bg-base hover:bg-accent-primary hover:text-white transition-all"
         >
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Journal
         </Link>
@@ -354,7 +355,7 @@ const BlogDetail = () => {
 
         {/* Large Cover Image */}
         {cover_image && (
-          <div className="w-full h-64 sm:h-[450px] rounded-[24px] overflow-hidden border border-border-base mb-10 shadow-sm">
+          <div className="w-full h-64 sm:h-112.5 rounded-3xl overflow-hidden border border-border-base mb-10 shadow-sm">
             <img
               src={cover_image}
               alt={title}
@@ -381,7 +382,7 @@ const BlogDetail = () => {
             
             {/* Table of Contents Box */}
             {headings.length > 0 && (
-              <div className="bg-bg-surface border border-border-base rounded-[24px] p-6 shadow-sm">
+              <div className="bg-bg-surface border border-border-base rounded-3xl p-6 shadow-sm">
                 <h4 className="font-brand font-semibold text-sm uppercase tracking-wider text-text-primary mb-4 border-b border-border-base pb-2">
                   Table of Contents
                 </h4>
@@ -402,7 +403,7 @@ const BlogDetail = () => {
             )}
 
             {/* Author Summary Box */}
-            <div className="bg-bg-surface border border-border-base rounded-[24px] p-6 shadow-sm space-y-4">
+            <div className="bg-bg-surface border border-border-base rounded-3xl p-6 shadow-sm space-y-4">
               <h4 className="font-brand font-semibold text-sm uppercase tracking-wider text-text-primary border-b border-border-base pb-2">
                 About the Author
               </h4>
@@ -422,7 +423,7 @@ const BlogDetail = () => {
               </p>
               <Link 
                 to={`/profile/${author?.id}`}
-                className="inline-flex items-center justify-center font-brand font-semibold text-xs border border-border-base rounded-[12px] px-4 py-2 hover:bg-bg-base text-text-primary w-full text-center"
+                className="inline-flex items-center justify-center font-brand font-semibold text-xs border border-border-base rounded-xl px-4 py-2 hover:bg-bg-base text-text-primary w-full text-center"
               >
                 View Profile
               </Link>
@@ -441,7 +442,7 @@ const BlogDetail = () => {
           </div>
 
           {/* Add / Edit Comment Form */}
-          <div id="comment-form-section" className="bg-bg-surface border border-border-base rounded-[24px] p-5 mb-8">
+          <div id="comment-form-section" className="bg-bg-surface border border-border-base rounded-3xl p-5 mb-8">
             {isAuthenticated ? (
               <form onSubmit={handleCommentSubmit} className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -460,7 +461,7 @@ const BlogDetail = () => {
                       value={commentInput}
                       onChange={(e) => setCommentInput(e.target.value)}
                       placeholder="Share your thoughts or feedback on this essay..."
-                      className="w-full mt-2 bg-bg-base border border-border-base text-text-primary placeholder:text-text-secondary/50 text-sm px-4 py-3 rounded-[16px] focus:outline-none focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10 transition-all resize-y"
+                      className="w-full mt-2 bg-bg-base border border-border-base text-text-primary placeholder:text-text-secondary/50 text-sm px-4 py-3 rounded-2xl focus:outline-none focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10 transition-all resize-y"
                     />
                   </div>
                 </div>
@@ -473,7 +474,7 @@ const BlogDetail = () => {
                         setEditingComment(null);
                         setCommentInput('');
                       }}
-                      className="px-4 py-2 border border-border-base text-xs font-semibold text-text-secondary hover:text-text-primary rounded-[12px] cursor-pointer"
+                      className="px-4 py-2 border border-border-base text-xs font-semibold text-text-secondary hover:text-text-primary rounded-xl cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -482,7 +483,7 @@ const BlogDetail = () => {
                     type="submit"
                     variant="primary"
                     size="sm"
-                    className="rounded-[12px]"
+                    className="rounded-xl"
                     isLoading={addCommentMutation.isLoading || editCommentMutation.isLoading}
                     icon={Send}
                   >

@@ -72,7 +72,7 @@ const SearchModal = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-bg-surface border border-border-base rounded-[24px] shadow-2xl overflow-hidden flex flex-col max-h-[70vh] z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-2xl bg-bg-surface border border-border-base rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[70vh] z-10 animate-in fade-in zoom-in-95 duration-200">
         
         {/* Search Input Bar */}
         <div className="flex items-center gap-3 px-5 py-4 border-b border-border-base">
@@ -121,7 +121,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 <div
                   key={blog.id}
                   onClick={() => handleResultClick(blog.id)}
-                  className="group flex items-center justify-between p-3.5 hover:bg-bg-base rounded-[16px] transition-colors cursor-pointer border border-transparent hover:border-border-base"
+                  className="group flex items-center justify-between p-3.5 hover:bg-bg-base rounded-2xl transition-colors cursor-pointer border border-transparent hover:border-border-base"
                 >
                   <div className="grow pr-4">
                     <span className="text-[10px] font-semibold text-accent-primary uppercase tracking-wider block mb-0.5">

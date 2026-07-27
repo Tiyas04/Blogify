@@ -96,7 +96,7 @@ const Footer = () => {
             </p>
             
             {subscribed ? (
-              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900 rounded-[16px] text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+              <div className="p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900 rounded-2xl text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
                 🎉 Success! Thank you for subscribing to our journal.
               </div>
             ) : (
@@ -107,7 +107,7 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="w-full bg-bg-base border border-border-base text-text-primary placeholder:text-text-secondary/50 text-sm px-4 py-3 rounded-[16px] focus:outline-none focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10 transition-all"
+                  className="w-full bg-bg-base border border-border-base text-text-primary placeholder:text-text-secondary/50 text-sm px-4 py-3 rounded-2xl focus:outline-none focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10 transition-all"
                 />
                 <button
                   type="submit"

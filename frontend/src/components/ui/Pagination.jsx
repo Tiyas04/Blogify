@@ -17,7 +17,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, className = '' }) =
         type="button"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-2 border border-border-base rounded-[12px] bg-bg-surface hover:bg-bg-base text-text-primary hover:text-accent-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer disabled:hover:text-text-primary disabled:hover:bg-bg-surface active:scale-95"
+        className="p-2 border border-border-base rounded-xl bg-bg-surface hover:bg-bg-base text-text-primary hover:text-accent-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer disabled:hover:text-text-primary disabled:hover:bg-bg-surface active:scale-95"
         title="Previous Page"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -32,7 +32,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, className = '' }) =
               key={p}
               type="button"
               onClick={() => onPageChange(p)}
-              className={`w-10 h-10 rounded-[12px] flex items-center justify-center font-bold text-sm border transition-all duration-200 cursor-pointer active:scale-95
+              className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm border transition-all duration-200 cursor-pointer active:scale-95
                 ${isActive
                   ? 'bg-accent-primary text-white dark:text-slate-950 border-accent-primary shadow-sm'
                   : 'bg-bg-surface text-text-secondary border-border-base hover:text-text-primary hover:border-text-primary'
@@ -50,7 +50,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, className = '' }) =
         type="button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-2 border border-border-base rounded-[12px] bg-bg-surface hover:bg-bg-base text-text-primary hover:text-accent-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer disabled:hover:text-text-primary disabled:hover:bg-bg-surface active:scale-95"
+        className="p-2 border border-border-base rounded-xl bg-bg-surface hover:bg-bg-base text-text-primary hover:text-accent-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer disabled:hover:text-text-primary disabled:hover:bg-bg-surface active:scale-95"
         title="Next Page"
       >
         <ChevronRight className="w-5 h-5" />

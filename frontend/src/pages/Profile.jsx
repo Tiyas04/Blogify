@@ -129,7 +129,7 @@ const Profile = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-body space-y-10">
       
       {/* 1. Profile Header Card */}
-      <div className="bg-bg-surface border border-border-base rounded-[24px] p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
+      <div className="bg-bg-surface border border-border-base rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
         
         {/* Avatar image */}
         <img
@@ -243,7 +243,7 @@ const Profile = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 border border-dashed border-border-base rounded-[24px] bg-bg-surface max-w-xl mx-auto">
+              <div className="text-center py-16 border border-dashed border-border-base rounded-3xl bg-bg-surface max-w-xl mx-auto">
                 <BookOpen className="w-12 h-12 text-text-secondary/40 mx-auto mb-3 stroke-[1.5]" />
                 <h3 className="font-heading font-bold text-text-primary">No published articles</h3>
                 <p className="text-xs text-text-secondary mt-1 mb-5">
@@ -265,19 +265,19 @@ const Profile = () => {
 
         {/* Account Details Settings form */}
         {activeTab === 'settings' && (
-          <div className="max-w-2xl bg-bg-surface border border-border-base rounded-[24px] p-6 sm:p-8 shadow-sm">
+          <div className="max-w-2xl bg-bg-surface border border-border-base rounded-3xl p-6 sm:p-8 shadow-sm">
             <h3 className="text-lg font-heading font-bold text-text-primary mb-6 border-b border-border-base pb-3">
               Journal Contributor Settings
             </h3>
 
             {profileError && (
-              <div className="mb-5 p-4 bg-danger-base/10 border border-danger-base/20 text-danger-base rounded-[16px] text-xs font-semibold">
+              <div className="mb-5 p-4 bg-danger-base/10 border border-danger-base/20 text-danger-base rounded-2xl text-xs font-semibold">
                 ⚠️ {profileError}
               </div>
             )}
 
             {successMsg && (
-              <div className="mb-5 p-4 bg-success-base/10 border border-success-base/20 text-success-base rounded-[16px] text-xs font-semibold flex items-center gap-1">
+              <div className="mb-5 p-4 bg-success-base/10 border border-success-base/20 text-success-base rounded-2xl text-xs font-semibold flex items-center gap-1">
                 <Check className="w-4 h-4" />
                 {successMsg}
               </div>

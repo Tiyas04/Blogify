@@ -54,6 +54,7 @@ async def create_blog(blog: BlogCreate, current_user: dict, cover_image: UploadF
         "category": blog.category,
         "tags": blog.tags,
         "cover_image_public_id": cover_image_public_id,
+        "cover_image": cover_image_url,
         "cover_image_url": cover_image_url,
         "author": author_info,
         "likes_count": 0,
@@ -107,7 +108,8 @@ async def get_all_blogs(
 
     for blog in blog_list:
         blog["id"] = str(blog.pop("_id"))
-        blog.pop("cover_image_public_id",None)
+        blog["cover_image"] = blog.get("cover_image_url")
+        blog.pop("cover_image_public_id", None)
 
     return {
         "success": True,
@@ -146,6 +148,7 @@ async def get_blog_by_id(blog_id: str):
         )
 
     blog["id"] = str(blog.pop("_id"))
+    blog["cover_image"] = blog.get("cover_image_url")
     blog.pop("cover_image_public_id", None)
 
     return {
@@ -225,6 +228,7 @@ async def update_blog(
         )
 
     updated_blog["id"] = str(updated_blog.pop("_id"))
+    updated_blog["cover_image"] = updated_blog.get("cover_image_url")
     updated_blog.pop("cover_image_public_id", None)
 
     return {

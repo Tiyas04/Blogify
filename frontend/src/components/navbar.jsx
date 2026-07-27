@@ -88,7 +88,7 @@ const Navbar = () => {
                 {dropdownOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setDropdownOpen(false)} />
-                    <div className="absolute right-0 mt-3 w-56 bg-bg-surface border border-border-base rounded-[16px] shadow-xl py-2 z-20 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <div className="absolute right-0 mt-3 w-56 bg-bg-surface border border-border-base rounded-2xl shadow-xl py-2 z-20 animate-in fade-in slide-in-from-top-2 duration-150">
                       <div className="px-4 py-2.5 border-b border-border-base">
                         <p className="text-sm font-brand font-semibold text-text-primary truncate">{user?.name}</p>
                         <p className="text-xs font-brand font-normal text-text-secondary truncate mt-0.5">{user?.email}</p>
@@ -126,7 +126,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/auth"
-                className="inline-flex items-center justify-center font-brand font-semibold rounded-[16px] px-5 py-2.5 text-sm bg-text-primary text-bg-base hover:opacity-90 active:scale-95 transition-all"
+                className="inline-flex items-center justify-center font-brand font-semibold rounded-2xl px-5 py-2.5 text-sm bg-text-primary text-bg-base hover:opacity-90 active:scale-95 transition-all"
               >
                 Sign In
               </Link>
@@ -203,7 +203,7 @@ const Navbar = () => {
               <Link
                 to="/auth"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-center font-brand font-semibold bg-text-primary text-bg-base px-4 py-2.5 rounded-[12px] mt-4"
+                className="block text-center font-brand font-semibold bg-text-primary text-bg-base px-4 py-2.5 rounded-xl mt-4"
               >
                 Sign In
               </Link>

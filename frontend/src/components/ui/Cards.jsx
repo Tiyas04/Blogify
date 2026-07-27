@@ -29,9 +29,9 @@ export const FeaturedCard = ({ blog }) => {
   const { id, title, content, cover_image, category, author, likes_count, comments_count, created_at } = blog;
 
   return (
-    <div className="group relative bg-bg-card border border-border-base rounded-[16px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl flex flex-col md:flex-row min-h-[350px]">
+    <div className="group relative bg-bg-card border border-border-base rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl flex flex-col md:flex-row min-h-87.5">
       {/* Cover Image */}
-      <div className="md:w-1/2 overflow-hidden relative min-h-[220px]">
+      <div className="md:w-1/2 overflow-hidden relative min-h-55">
         {cover_image ? (
           <img
             src={cover_image}
@@ -111,7 +111,7 @@ export const BlogCard = ({ blog }) => {
   const { id, title, content, cover_image, category, author, likes_count, comments_count, created_at } = blog;
 
   return (
-    <div className="group bg-bg-card border border-border-base rounded-[16px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl flex flex-col h-full">
+    <div className="group bg-bg-card border border-border-base rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl flex flex-col h-full">
       {/* Cover Image */}
       <div className="overflow-hidden relative h-48 sm:h-52">
         {cover_image ? (
@@ -163,7 +163,7 @@ export const BlogCard = ({ blog }) => {
               alt={author?.name}
               className="w-8 h-8 rounded-full object-cover border border-border-base"
             />
-            <span className="text-xs sm:text-sm font-heading font-semibold text-text-primary truncate max-w-[100px] hover:text-accent-primary transition-colors">
+            <span className="text-xs sm:text-sm font-heading font-semibold text-text-primary truncate max-w-25 hover:text-accent-primary transition-colors">
               {author?.name || 'Anonymous'}
             </span>
           </Link>
@@ -188,7 +188,7 @@ export const BlogCard = ({ blog }) => {
 export const AuthorCard = ({ author, bio, size = 'md' }) => {
   const isLg = size === 'lg';
   return (
-    <div className={`bg-bg-card border border-border-base rounded-[16px] p-6 flex ${isLg ? 'flex-col items-center text-center' : 'items-center gap-4'}`}>
+    <div className={`bg-bg-card border border-border-base rounded-2xl p-6 flex ${isLg ? 'flex-col items-center text-center' : 'items-center gap-4'}`}>
       <img
         src={author?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${author?.name || 'User'}`}
         alt={author?.name}
@@ -215,7 +215,7 @@ export const CommentCard = ({ comment, currentUserId, onEdit, onDelete }) => {
   const isOwner = author?.id === currentUserId;
 
   return (
-    <div className="bg-bg-card border border-border-base rounded-[16px] p-5 flex gap-4 transition-all duration-200">
+    <div className="bg-bg-card border border-border-base rounded-2xl p-5 flex gap-4 transition-all duration-200">
       <img
         src={author?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${author?.name || 'User'}`}
         alt={author?.name}

@@ -94,27 +94,47 @@ const WritePost = () => {
 
   // Create Blog Mutation
   const createMutation = useMutation({
-    mutationFn: (formData) => api.post('/blogs/create-blog', formData),
+    mutationFn: (formData) =>
+      api.post('/blogs/create-blog', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
     onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
-      navigate(`/blog/${res.data.id}`);
+      const blogId = res?.data?.id || res?.data?._id || res?.id;
+      if (blogId) {
+        navigate(`/blog/${blogId}`);
+      } else {
+        navigate('/');
+      }
     },
     onError: (err) => {
       setApiError(err.message || 'Failed to publish story.');
-    }
+    },
   });
 
   // Edit Blog Mutation
   const updateMutation = useMutation({
-    mutationFn: (formData) => api.patch(`/blogs/update-blog/${id}`, formData),
-    onSuccess: () => {
+    mutationFn: (formData) =>
+      api.patch(`/blogs/update-blog/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
       queryClient.invalidateQueries({ queryKey: ['blog', id] });
-      navigate(`/blog/${id}`);
+      const blogId = res?.data?.id || res?.data?._id || res?.id || id;
+      if (blogId) {
+        navigate(`/blog/${blogId}`);
+      } else {
+        navigate('/');
+      }
     },
     onError: (err) => {
       setApiError(err.message || 'Failed to update story.');
-    }
+    },
   });
 
   const onSubmit = async (data) => {
@@ -123,7 +143,7 @@ const WritePost = () => {
     formData.append('title', data.title);
     formData.append('category', data.category);
     formData.append('content', data.content);
-    formData.append('tags', data.tags);
+    formData.append('tags', data.tags || '');
 
     // Only append image if it is a new file upload
     if (data.cover_image instanceof File) {
@@ -208,7 +228,7 @@ const WritePost = () => {
           <button
             type="button"
             onClick={() => setActiveTab('write')}
-            className={`grow sm:grow-0 px-4 py-2 border rounded-[12px] text-xs font-semibold font-brand flex items-center justify-center gap-1.5 transition-all
+            className={`grow sm:grow-0 px-4 py-2 border rounded-xl text-xs font-semibold font-brand flex items-center justify-center gap-1.5 transition-all
               ${activeTab === 'write' 
                 ? 'bg-text-primary text-bg-base border-text-primary' 
                 : 'bg-bg-surface border-border-base text-text-secondary'
@@ -221,7 +241,7 @@ const WritePost = () => {
           <button
             type="button"
             onClick={() => setActiveTab('preview')}
-            className={`grow sm:grow-0 px-4 py-2 border rounded-[12px] text-xs font-semibold font-brand flex items-center justify-center gap-1.5 transition-all
+            className={`grow sm:grow-0 px-4 py-2 border rounded-xl text-xs font-semibold font-brand flex items-center justify-center gap-1.5 transition-all
               ${activeTab === 'preview' 
                 ? 'bg-text-primary text-bg-base border-text-primary' 
                 : 'bg-bg-surface border-border-base text-text-secondary'
@@ -235,7 +255,7 @@ const WritePost = () => {
       </div>
 
       {apiError && (
-        <div className="p-4 bg-danger-base/10 border border-danger-base/25 text-danger-base rounded-[16px] text-xs font-semibold">
+        <div className="p-4 bg-danger-base/10 border border-danger-base/25 text-danger-base rounded-2xl text-xs font-semibold">
           ⚠️ {apiError}
         </div>
       )}
@@ -246,7 +266,7 @@ const WritePost = () => {
         {/* Left Compose Column (Form block) */}
         <form 
           onSubmit={handleSubmit(onSubmit)} 
-          className={`space-y-6 bg-bg-surface border border-border-base p-6 rounded-[24px] shadow-sm flex flex-col justify-between
+          className={`space-y-6 bg-bg-surface border border-border-base p-6 rounded-3xl shadow-sm flex flex-col justify-between
             ${activeTab === 'write' ? 'block' : 'hidden lg:block'}
           `}
         >
@@ -320,7 +340,7 @@ const WritePost = () => {
 
         {/* Right Live Preview Column */}
         <div 
-          className={`bg-bg-surface border border-border-base p-6 sm:p-8 rounded-[24px] shadow-sm space-y-6 overflow-y-auto max-h-[85vh] lg:sticky lg:top-28
+          className={`bg-bg-surface border border-border-base p-6 sm:p-8 rounded-3xl shadow-sm space-y-6 overflow-y-auto max-h-[85vh] lg:sticky lg:top-28
             ${activeTab === 'preview' ? 'block' : 'hidden lg:block'}
           `}
         >
@@ -356,7 +376,7 @@ const WritePost = () => {
 
             {/* Cover image preview */}
             {coverImagePreview && (
-              <div className="w-full h-44 sm:h-56 rounded-[16px] overflow-hidden border border-border-base">
+              <div className="w-full h-44 sm:h-56 rounded-2xl overflow-hidden border border-border-base">
                 <img
                   src={coverImagePreview}
                   alt="Preview Cover"

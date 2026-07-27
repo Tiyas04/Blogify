@@ -74,14 +74,14 @@ const Home = () => {
             <div className="flex flex-wrap gap-4 pt-2">
               <button
                 onClick={() => navigate('/explore')}
-                className="inline-flex items-center justify-center font-brand font-semibold rounded-[16px] px-6 py-3.5 bg-text-primary text-bg-base hover:bg-text-secondary transition-all cursor-pointer hover:scale-[1.03] active:scale-95 shadow-md"
+                className="inline-flex items-center justify-center font-brand font-semibold rounded-2xl px-6 py-3.5 bg-text-primary text-bg-base hover:bg-text-secondary transition-all cursor-pointer hover:scale-[1.03] active:scale-95 shadow-md"
               >
                 Start Reading
                 <ArrowRight className="w-4 h-4 ml-2" />
               </button>
               <button
                 onClick={() => navigate('/write')}
-                className="inline-flex items-center justify-center font-brand font-semibold rounded-[16px] px-6 py-3.5 bg-bg-surface border border-border-base text-text-primary hover:bg-bg-base transition-all cursor-pointer hover:scale-[1.03] active:scale-95"
+                className="inline-flex items-center justify-center font-brand font-semibold rounded-2xl px-6 py-3.5 bg-bg-surface border border-border-base text-text-primary hover:bg-bg-base transition-all cursor-pointer hover:scale-[1.03] active:scale-95"
               >
                 Write an Essay
               </button>
@@ -90,8 +90,8 @@ const Home = () => {
 
           {/* Right Minimal Illustration / Newspaper Grid Design */}
           <div className="lg:col-span-5 relative hidden lg:block select-none">
-            <div className="absolute inset-0 bg-linear-to-tr from-text-muted/10 to-border-base/15 rounded-[24px] blur-3xl opacity-40" />
-            <div className="relative bg-bg-card border-2 border-border-base rounded-[24px] p-6 shadow-xl space-y-5 rotate-1">
+            <div className="absolute inset-0 bg-linear-to-tr from-text-muted/10 to-border-base/15 rounded-3xl blur-3xl opacity-40" />
+            <div className="relative bg-bg-card border-2 border-border-base rounded-3xl p-6 shadow-xl space-y-5 rotate-1">
               
               {/* Journal Title header */}
               <div className="border-b border-border-base pb-3 text-center">
@@ -105,16 +105,16 @@ const Home = () => {
 
               {/* Journal Mock Article */}
               <div className="space-y-3">
-                <div className="h-4 bg-text-muted/15 rounded-[4px] w-1/4" />
-                <div className="h-7 bg-text-primary/70 rounded-[8px] w-full" />
-                <div className="h-7 bg-text-primary/70 rounded-[8px] w-3/4" />
+                <div className="h-4 bg-text-muted/15 rounded-sm w-1/4" />
+                <div className="h-7 bg-text-primary/70 rounded-lg w-full" />
+                <div className="h-7 bg-text-primary/70 rounded-lg w-3/4" />
                 
                 {/* Paragraph Lines */}
                 <div className="space-y-1.5 pt-2">
-                  <div className="h-2 bg-text-secondary/20 rounded-[4px] w-full" />
-                  <div className="h-2 bg-text-secondary/20 rounded-[4px] w-full" />
-                  <div className="h-2 bg-text-secondary/20 rounded-[4px] w-11/12" />
-                  <div className="h-2 bg-text-secondary/20 rounded-[4px] w-4/5" />
+                  <div className="h-2 bg-text-secondary/20 rounded-sm w-full" />
+                  <div className="h-2 bg-text-secondary/20 rounded-sm w-full" />
+                  <div className="h-2 bg-text-secondary/20 rounded-sm w-11/12" />
+                  <div className="h-2 bg-text-secondary/20 rounded-sm w-4/5" />
                 </div>
               </div>
 
@@ -126,7 +126,7 @@ const Home = () => {
             </div>
             
             {/* Absolute overlay badge */}
-            <div className="absolute -bottom-4 -left-4 bg-text-primary text-bg-base border border-border-base/10 px-4 py-3 rounded-[12px] shadow-lg font-brand font-bold text-[10px] tracking-wider -rotate-6 flex items-center gap-1.5">
+            <div className="absolute -bottom-4 -left-4 bg-text-primary text-bg-base border border-border-base/10 px-4 py-3 rounded-xl shadow-lg font-brand font-bold text-[10px] tracking-wider -rotate-6 flex items-center gap-1.5">
               <BookOpen className="w-4 h-4" />
               WEEKLY EDITION
             </div>
@@ -193,9 +193,9 @@ const Home = () => {
 
       {/* 3b. Editorial Spotlight Quote */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-bg-card border border-border-base rounded-[24px] p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
-          <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-border-base/40 rounded-tl-[24px] pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-border-base/40 rounded-br-[24px] pointer-events-none" />
+        <div className="bg-bg-card border border-border-base rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
+          <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-border-base/40 rounded-tl-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-border-base/40 rounded-br-3xl pointer-events-none" />
 {/*           
           <span className="text-[10px] tracking-widest uppercase font-semibold text-accent-primary font-brand bg-accent-primary/5 px-3.5 py-1.5 rounded-full inline-block mb-6">
             💡 Editorial Statement
@@ -239,7 +239,7 @@ const Home = () => {
                 />
               </>
             ) : (
-              <div className="text-center py-16 border border-dashed border-border-base rounded-[24px] bg-bg-surface">
+              <div className="text-center py-16 border border-dashed border-border-base rounded-3xl bg-bg-surface">
                 <BookOpen className="w-10 h-10 mx-auto text-text-secondary/50 mb-3 stroke-[1.5]" />
                 <p className="font-semibold text-text-primary">No articles published yet</p>
                 <p className="text-xs text-text-secondary mt-1">Be the first to publish a premium digital journal article!</p>
@@ -251,7 +251,7 @@ const Home = () => {
           <div className="lg:col-span-4 space-y-8 lg:sticky lg:top-28 lg:self-start">
             
             {/* Trending Articles Block */}
-            <div className="bg-bg-surface border border-border-base rounded-[24px] p-6 shadow-sm">
+            <div className="bg-bg-surface border border-border-base rounded-3xl p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5 border-b border-border-base pb-3">
                 <TrendingUp className="w-4.5 h-4.5 text-accent-primary" />
                 <h3 className="text-base sm:text-lg font-heading font-bold text-text-primary">
@@ -304,7 +304,7 @@ const Home = () => {
             </div>
 
             {/* Premium Newsletter Box */}
-            <div className="bg-text-primary text-bg-base rounded-[24px] p-6 shadow-xl space-y-4 text-center relative overflow-hidden">
+            <div className="bg-text-primary text-bg-base rounded-3xl p-6 shadow-xl space-y-4 text-center relative overflow-hidden">
               {/* Backlight glow */}
               <div className="absolute inset-0 bg-linear-to-tr from-accent-primary/30 to-purple-500/20 blur-2xl pointer-events-none" />
               
@@ -320,7 +320,7 @@ const Home = () => {
                 </p>
 
                 {newsletterSubscribed ? (
-                  <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-[16px] text-emerald-400 text-xs font-bold">
+                  <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-400 text-xs font-bold">
                     🎉 Subscribed Successfully!
                   </div>
                 ) : (
@@ -331,11 +331,11 @@ const Home = () => {
                       placeholder="you@email.com"
                       value={newsletterEmail}
                       onChange={(e) => setNewsletterEmail(e.target.value)}
-                      className="w-full bg-bg-surface border border-border-base/10 text-text-primary text-sm px-4 py-2.5 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-accent-primary text-center"
+                      className="w-full bg-bg-surface border border-border-base/10 text-text-primary text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary text-center"
                     />
                     <button
                       type="submit"
-                      className="w-full font-heading font-semibold text-xs uppercase tracking-wider py-3 bg-accent-primary text-white dark:text-slate-950 rounded-[12px] cursor-pointer hover:scale-102 active:scale-98 transition-all"
+                      className="w-full font-heading font-semibold text-xs uppercase tracking-wider py-3 bg-accent-primary text-white dark:text-slate-950 rounded-xl cursor-pointer hover:scale-102 active:scale-98 transition-all"
                     >
                       Subscribe
                     </button>

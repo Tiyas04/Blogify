@@ -92,7 +92,7 @@ const Auth = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-body">
-      <div className="w-full max-w-lg bg-bg-surface border border-border-base rounded-[24px] p-6 sm:p-8 shadow-xl">
+      <div className="w-full max-w-lg bg-bg-surface border border-border-base rounded-3xl p-6 sm:p-8 shadow-xl">
         
         {/* Header Logo & Title */}
         <div className="text-center mb-8">
@@ -133,13 +133,13 @@ const Auth = () => {
 
         {/* Status Alerts */}
         {apiError && (
-          <div className="mb-5 p-4 bg-danger-base/10 border border-danger-base/20 text-danger-base rounded-[16px] text-xs font-semibold">
+          <div className="mb-5 p-4 bg-danger-base/10 border border-danger-base/20 text-danger-base rounded-2xl text-xs font-semibold">
             ⚠️ {apiError}
           </div>
         )}
 
         {successMsg && (
-          <div className="mb-5 p-4 bg-success-base/10 border border-success-base/20 text-success-base rounded-[16px] text-xs font-semibold">
+          <div className="mb-5 p-4 bg-success-base/10 border border-success-base/20 text-success-base rounded-2xl text-xs font-semibold">
             🎉 {successMsg}
           </div>
         )}

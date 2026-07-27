@@ -141,7 +141,7 @@ const Explore = () => {
           <select
             value={sortParam}
             onChange={(e) => updateFilters({ sort: e.target.value })}
-            className="bg-bg-surface border border-border-base rounded-[12px] px-3.5 py-2 text-text-primary focus:outline-none text-xs sm:text-sm font-semibold hover:border-text-secondary cursor-pointer"
+            className="bg-bg-surface border border-border-base rounded-xl px-3.5 py-2 text-text-primary focus:outline-none text-xs sm:text-sm font-semibold hover:border-text-secondary cursor-pointer"
           >
             <option value="latest">Latest Publications</option>
             <option value="popular">Most Liked / Read</option>
@@ -154,7 +154,7 @@ const Explore = () => {
       {isLoading ? (
         <LoadingSkeleton count={6} />
       ) : error ? (
-        <div className="text-center py-16 bg-danger-base/5 border border-danger-base/10 rounded-[24px] text-danger-base max-w-lg mx-auto flex flex-col items-center gap-3">
+        <div className="text-center py-16 bg-danger-base/5 border border-danger-base/10 rounded-3xl text-danger-base max-w-lg mx-auto flex flex-col items-center gap-3">
           <AlertCircle className="w-10 h-10" />
           <p className="font-bold">Error loading articles</p>
           <p className="text-xs">{error.message}</p>
@@ -174,7 +174,7 @@ const Explore = () => {
           />
         </div>
       ) : (
-        <div className="text-center py-20 border border-dashed border-border-base rounded-[24px] bg-bg-surface max-w-xl mx-auto">
+        <div className="text-center py-20 border border-dashed border-border-base rounded-3xl bg-bg-surface max-w-xl mx-auto">
           <BookOpen className="w-12 h-12 mx-auto text-text-secondary/40 mb-3 stroke-[1.5]" />
           <h3 className="font-heading font-bold text-text-primary text-lg">No matching articles found</h3>
           <p className="text-xs text-text-secondary mt-1 px-4 leading-relaxed">

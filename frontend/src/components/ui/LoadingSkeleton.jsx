@@ -10,7 +10,7 @@ export const SkeletonPulse = ({ className = '' }) => {
 // Shimmering layout matching standard Blog Cards
 export const BlogCardSkeleton = () => {
   return (
-    <div className="bg-bg-surface border border-border-base rounded-[16px] overflow-hidden flex flex-col h-full">
+    <div className="bg-bg-surface border border-border-base rounded-2xl overflow-hidden flex flex-col h-full">
       {/* Cover image area */}
       <SkeletonPulse className="w-full h-48 sm:h-52 rounded-none" />
       
@@ -50,7 +50,7 @@ export const BlogCardSkeleton = () => {
 // Shimmering layout matching Featured Cards
 export const FeaturedCardSkeleton = () => {
   return (
-    <div className="bg-bg-surface border border-border-base rounded-[16px] overflow-hidden flex flex-col md:flex-row min-h-[350px]">
+    <div className="bg-bg-surface border border-border-base rounded-2xl overflow-hidden flex flex-col md:flex-row min-h-87.5">
       {/* Cover image area */}
       <SkeletonPulse className="md:w-1/2 h-56 sm:h-auto rounded-none shrink-0" />
 
@@ -120,7 +120,7 @@ export const BlogDetailSkeleton = () => {
       </div>
 
       {/* Cover Image */}
-      <SkeletonPulse className="w-full h-64 sm:h-[400px] rounded-[16px] mb-8" />
+      <SkeletonPulse className="w-full h-64 sm:h-100 rounded-2xl mb-8" />
 
       {/* Body sentences */}
       <div className="flex flex-col gap-3">

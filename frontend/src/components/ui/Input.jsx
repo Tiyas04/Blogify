@@ -19,7 +19,7 @@ export const Input = React.forwardRef(({
       <input
         ref={ref}
         type={type}
-        className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20 focus:border-danger-base' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-[16px] text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:ring-4 transition-all duration-200 ${className}`}
+        className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20 focus:border-danger-base' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-2xl text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:ring-4 transition-all duration-200 ${className}`}
         {...props}
       />
       {error && (
@@ -51,7 +51,7 @@ export const Textarea = React.forwardRef(({
       <textarea
         ref={ref}
         rows={rows}
-        className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20 focus:border-danger-base' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-[16px] text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:ring-4 transition-all duration-200 resize-y ${className}`}
+        className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20 focus:border-danger-base' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-2xl text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:ring-4 transition-all duration-200 resize-y ${className}`}
         {...props}
       />
       {error && (
@@ -83,7 +83,7 @@ export const Select = React.forwardRef(({
       <div className="relative">
         <select
           ref={ref}
-          className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-[16px] text-text-primary focus:outline-none focus:ring-4 transition-all duration-200 appearance-none ${className}`}
+          className={`w-full bg-bg-surface border ${error ? 'border-danger-base focus:ring-danger-base/20' : 'border-border-base focus:ring-accent-primary/20 focus:border-accent-primary'} px-4 py-3 rounded-2xl text-text-primary focus:outline-none focus:ring-4 transition-all duration-200 appearance-none ${className}`}
           {...props}
         >
           <option value="">Select a category</option>
@@ -177,10 +177,10 @@ export const FileUploader = ({
       )}
       
       <div
-        className={`relative border-2 border-dashed rounded-[16px] transition-all duration-200 cursor-pointer overflow-hidden
+        className={`relative border-2 border-dashed rounded-2xl transition-all duration-200 cursor-pointer overflow-hidden
           ${dragActive ? 'border-accent-primary bg-accent-primary/5' : 'border-border-base hover:border-text-secondary'}
           ${error ? 'border-danger-base bg-danger-base/5' : ''}
-          ${preview ? 'p-0 h-48 sm:h-64' : 'p-8 flex flex-col items-center justify-center min-h-[160px] bg-bg-surface'}
+          ${preview ? 'p-0 h-48 sm:h-64' : 'p-8 flex flex-col items-center justify-center min-h-40 bg-bg-surface'}
         `}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
