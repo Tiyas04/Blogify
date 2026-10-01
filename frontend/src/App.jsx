@@ -63,12 +63,13 @@ const PageShell = ({ children }) => {
 
 const AppRoutes = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-bg-base text-text-primary transition-colors duration-300 relative">
+    <div className="min-h-screen flex flex-col text-text-primary transition-colors duration-300 relative selection:bg-accent-primary selection:text-text-primary">
       <Background />
-      <Navbar />
-      
-      {/* Top Tilted Marquee Tape */}
-      <TiltedMarquee />
+      <div className="relative z-10 flex flex-col grow">
+        <Navbar />
+        
+        {/* Top Tilted Marquee Tape */}
+        <TiltedMarquee />
       
       <Routes>
         <Route path="/" element={<PageShell><Home /></PageShell>} />
@@ -118,6 +119,7 @@ const AppRoutes = () => {
       <TiltedMarquee />
 
       <Footer />
+    </div>
     </div>
   );
 };

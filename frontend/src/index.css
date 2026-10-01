@@ -7,6 +7,8 @@
   --font-heading: "Plus Jakarta Sans", sans-serif;
   --font-serif: "Lora", serif;
   --font-brand: "Outfit", sans-serif;
+  --font-editorial: "Newsreader", "Lora", Georgia, serif;
+  --font-headline: "Playfair Display", "Lora", Georgia, serif;
 
   /* Theme color names mapping to dynamic CSS variables */
   --color-bg-base: var(--bg-base);
@@ -23,41 +25,63 @@
 }
 
 :root {
-  --bg-base: #F8F7F4;       /* Background */
-  --bg-surface: #FCFCFA;    /* Paper */
-  --bg-card: #FFFFFF;       /* Card */
-  --text-primary: #111111;  /* Heading */
-  --text-secondary: #3F3F46;/* Body */
-  --text-muted: #71717A;    /* Muted */
-  --border-base: #E7E5E4;   /* Border */
-  --accent-primary: #E4E4E7;/* Accent */
-  --accent-hover: #D4D4D8;
+  /* Classy broadsheet newsprint palette (Light) */
+  --bg-base: #F7F5EE;       /* Warm vintage broadsheet newsprint */
+  --bg-surface: #FAF8F2;    /* Pressed editorial paper */
+  --bg-card: #FFFFFF;       /* Crisp article card */
+  --text-primary: #141210;  /* Rich printer's black ink */
+  --text-secondary: #3D3934;/* Deep charcoal body text */
+  --text-muted: #736C63;    /* Aged editorial muted ink */
+  --border-base: #E2DCD2;   /* Newsprint rule border */
+  --accent-primary: #ECE5DA;/* Warm paper wash */
+  --accent-hover: #DFD7C9;
   --success-base: #16A34A;
   --danger-base: #DC2626;
 
-  /* Cyber background parameters */
-  --grid-line-color: rgba(18, 24, 36, 0.03);
-  --watermark-text-color: rgba(18, 24, 36, 0.05);
-  --watermark-border-color: rgba(18, 24, 36, 0.03);
+  /* Newspaper broadsheet styling parameters */
+  --news-ink: rgba(20, 18, 16, 0.08);
+  --news-ink-faint: rgba(20, 18, 16, 0.035);
+  --news-rule: rgba(20, 18, 16, 0.07);
+  --news-rule-hairline: rgba(20, 18, 16, 0.035);
+  --news-watermark: rgba(20, 18, 16, 0.1);
+  --news-stamp-red: rgba(165, 42, 28, 0.22);
+  --news-stamp-border: rgba(165, 42, 28, 0.3);
+  --news-paper-grain-opacity: 0.035;
+
+  /* Legacy aliases for backwards compatibility */
+  --grid-line-color: rgba(20, 18, 16, 0.04);
+  --watermark-text-color: rgba(20, 18, 16, 0.08);
+  --watermark-border-color: rgba(20, 18, 16, 0.06);
 }
 
 .dark {
-  --bg-base: #161616;       /* Background */
-  --bg-surface: #1F1F1F;    /* Surface/Paper */
-  --bg-card: #262626;       /* Card */
-  --text-primary: #F5F5F4;  /* Primary Text */
-  --text-secondary: #D6D3D1;/* Body Text */
-  --text-muted: #A8A29E;    /* Muted */
-  --border-base: #3F3F46;   /* Border */
-  --accent-primary: #E4E4E7;/* Accent */
-  --accent-hover: #D4D4D8;
+  /* Classy broadsheet newsprint palette (Dark) */
+  --bg-base: #131211;       /* Deep charcoal press noir */
+  --bg-surface: #1A1918;    /* Dark pressed broadsheet */
+  --bg-card: #22201E;       /* Card on dark newsprint */
+  --text-primary: #F5EFE6;  /* Ivory press ink */
+  --text-secondary: #CCC5B7;/* Soft ivory body */
+  --text-muted: #8E867B;    /* Ghost newsprint ink */
+  --border-base: #332F2A;   /* Dark rule divider */
+  --accent-primary: #38342E;
+  --accent-hover: #46413A;
   --success-base: #22C55E;
   --danger-base: #EF4444;
 
-  /* Cyber background parameters */
-  --grid-line-color: rgba(245, 245, 244, 0.015);
-  --watermark-text-color: rgba(245, 245, 244, 0.035);
-  --watermark-border-color: rgba(245, 245, 244, 0.02);
+  /* Newspaper broadsheet styling parameters (Dark) */
+  --news-ink: rgba(245, 239, 230, 0.08);
+  --news-ink-faint: rgba(245, 239, 230, 0.03);
+  --news-rule: rgba(245, 239, 230, 0.06);
+  --news-rule-hairline: rgba(245, 239, 230, 0.035);
+  --news-watermark: rgba(245, 239, 230, 0.09);
+  --news-stamp-red: rgba(230, 95, 80, 0.25);
+  --news-stamp-border: rgba(230, 95, 80, 0.35);
+  --news-paper-grain-opacity: 0.028;
+
+  /* Legacy aliases */
+  --grid-line-color: rgba(245, 239, 230, 0.03);
+  --watermark-text-color: rgba(245, 239, 230, 0.07);
+  --watermark-border-color: rgba(245, 239, 230, 0.05);
 }
 
 /* Base style resets and transitions */
@@ -69,7 +93,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom premium scrollbar style */
+/* Custom newspaper-toned scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -85,60 +109,169 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-muted);
 }
 
-/* Cyber Grid Background style */
-.grid-bg {
+/* Authentic Newsprint Paper Texture with Real Tactile Grain & Edge Vignette */
+.newsprint-paper-canvas {
+  background-color: var(--bg-base);
   background-image: 
-    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
-  background-size: 32px 32px;
+    /* Aged Paper Vignette */
+    radial-gradient(ellipse 95% 75% at 50% 15%, transparent 25%, rgba(160, 140, 110, 0.08) 75%, rgba(130, 110, 80, 0.16) 100%),
+    /* Micro Tactile Newsprint Pulp Grain */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.12  0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain)'/%3E%3C/svg%3E");
 }
 
-/* Floating Watermark Tags styling */
-.watermark-tag {
-  font-family: var(--font-heading);
+.dark .newsprint-paper-canvas {
+  background-image: 
+    /* Dark Newsprint Press Noir Vignette */
+    radial-gradient(ellipse 95% 75% at 50% 15%, transparent 25%, rgba(0, 0, 0, 0.45) 75%, rgba(0, 0, 0, 0.75) 100%),
+    /* Dark Carbon Newsprint Grain */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainDark'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.85  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainDark)'/%3E%3C/svg%3E");
+}
+
+/* Authentic Newsprint Wood Pulp Fiber Flecks */
+.newsprint-fibers-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 28c6 2 12-1 18 1M88 16c-4 5-2 11-5 16M45 95c7-2 13 3 19 0M112 84c-2 6-8 10-6 17M28 64c3 3 8 2 11 4M134 52c-4-2-9 1-13-1M72 58c5-4 11-2 16-5M98 128c4 3 9 1 14 3M32 135c-3 5-7 8-5 14' stroke='%2342372c' stroke-width='0.75' stroke-linecap='round' stroke-opacity='0.18' fill='none'/%3E%3Ccircle cx='22' cy='98' r='0.8' fill='%2342372c' fill-opacity='0.22'/%3E%3Ccircle cx='80' cy='75' r='0.6' fill='%2342372c' fill-opacity='0.24'/%3E%3Ccircle cx='120' cy='105' r='0.7' fill='%2342372c' fill-opacity='0.20'/%3E%3Ccircle cx='58' cy='22' r='0.9' fill='%2342372c' fill-opacity='0.22'/%3E%3Ccircle cx='140' cy='32' r='0.6' fill='%2342372c' fill-opacity='0.20'/%3E%3Ccircle cx='62' cy='140' r='0.8' fill='%2342372c' fill-opacity='0.22'/%3E%3C/svg%3E");
+}
+
+.dark .newsprint-fibers-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 28c6 2 12-1 18 1M88 16c-4 5-2 11-5 16M45 95c7-2 13 3 19 0M112 84c-2 6-8 10-6 17M28 64c3 3 8 2 11 4M134 52c-4-2-9 1-13-1M72 58c5-4 11-2 16-5M98 128c4 3 9 1 14 3M32 135c-3 5-7 8-5 14' stroke='%23e6ded4' stroke-width='0.75' stroke-linecap='round' stroke-opacity='0.12' fill='none'/%3E%3Ccircle cx='22' cy='98' r='0.8' fill='%23e6ded4' fill-opacity='0.14'/%3E%3Ccircle cx='80' cy='75' r='0.6' fill='%23e6ded4' fill-opacity='0.16'/%3E%3Ccircle cx='120' cy='105' r='0.7' fill='%23e6ded4' fill-opacity='0.12'/%3E%3Ccircle cx='58' cy='22' r='0.9' fill='%23e6ded4' fill-opacity='0.15'/%3E%3Ccircle cx='140' cy='32' r='0.6' fill='%23e6ded4' fill-opacity='0.14'/%3E%3Ccircle cx='62' cy='140' r='0.8' fill='%23e6ded4' fill-opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* Broadsheet Horizontal Fold (The classic "above the fold" newspaper crease) */
+.newspaper-broadsheet-fold {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent calc(48% - 3px),
+    rgba(40, 28, 16, 0.04) calc(48% - 1px),
+    rgba(40, 28, 16, 0.09) 48%,
+    rgba(255, 255, 255, 0.16) calc(48% + 1px),
+    transparent calc(48% + 4px),
+    transparent 100%
+  );
+}
+
+.dark .newspaper-broadsheet-fold {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent calc(48% - 3px),
+    rgba(0, 0, 0, 0.5) calc(48% - 1px),
+    rgba(0, 0, 0, 0.85) 48%,
+    rgba(255, 255, 255, 0.06) calc(48% + 1px),
+    transparent calc(48% + 4px),
+    transparent 100%
+  );
+}
+
+/* Newspaper Column Grid (Editorial broadsheet column guides + baseline rules) */
+.newspaper-column-grid {
+  background-image: 
+    /* Vertical newsprint editorial column guides */
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc((100% - 7px) / 8),
+      var(--news-rule) calc((100% - 7px) / 8),
+      var(--news-rule) calc((100% - 7px) / 8 + 1px)
+    ),
+    /* Faint horizontal baseline typesetting rules */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 27px,
+      var(--news-rule-hairline) 27px,
+      var(--news-rule-hairline) 28px
+    );
+}
+
+/* Newspaper Double Horizontal Rule */
+.newspaper-double-rule {
+  border-top: 2px solid var(--border-base);
+  border-bottom: 1px solid var(--border-base);
+  padding-top: 2px;
+  height: 5px;
+}
+
+/* Editorial Drop Cap */
+.newspaper-dropcap::first-letter {
+  font-family: "Playfair Display", "Lora", Georgia, serif;
+  float: left;
+  font-size: 2.6rem;
+  line-height: 0.8;
+  padding-top: 3px;
+  padding-right: 6px;
+  padding-bottom: 0px;
   font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Vintage Editorial Press Stamp */
+.newspaper-stamp {
+  font-family: var(--font-heading);
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--watermark-text-color);
-  border: 1.5px solid var(--watermark-border-color);
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  background-color: var(--bg-surface);
-  box-shadow: 2px 2px 0px rgba(18, 24, 36, 0.01);
-  transition: opacity 300ms ease, background-color 300ms ease, border-color 300ms ease, color 300ms ease;
-  opacity: 0.65;
+  letter-spacing: 0.16em;
+  color: var(--news-stamp-red);
+  border: 1.5px dashed var(--news-stamp-border);
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  display: inline-block;
+  transform: rotate(-8deg);
+  font-size: 9px;
 }
 
-/* Float Animations for Background Tags */
-@keyframes float-1 {
-  0%, 100% { transform: translateY(0px) rotate(-10deg); }
-  50% { transform: translateY(-12px) rotate(-8deg); }
+/* Vintage Rubber Stamp Round */
+.newspaper-stamp-round {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--news-stamp-red);
+  border: 1.5px solid var(--news-stamp-border);
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: rotate(6deg);
+  font-size: 8px;
 }
 
-@keyframes float-2 {
-  0%, 100% { transform: translateY(0px) rotate(8deg); }
-  50% { transform: translateY(-8px) rotate(10deg); }
+/* Halftone newsprint dot matrix texture */
+.newspaper-halftone {
+  background-image: radial-gradient(var(--news-ink) 1px, transparent 1px);
+  background-size: 7px 7px;
 }
 
-@keyframes float-3 {
-  0%, 100% { transform: translateY(0px) rotate(-6deg); }
-  50% { transform: translateY(-15px) rotate(-8deg); }
+/* Gentle floating animations for newspaper broadsheet snippets */
+@keyframes newspaper-drift-1 {
+  0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+  50% { transform: translateY(-7px) rotate(-1deg); }
 }
 
-.animate-float-1 {
-  animation: float-1 8s ease-in-out infinite;
+@keyframes newspaper-drift-2 {
+  0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+  50% { transform: translateY(-9px) rotate(2deg); }
 }
 
-.animate-float-2 {
-  animation: float-2 7s ease-in-out infinite;
+@keyframes newspaper-drift-3 {
+  0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
+  50% { transform: translateY(-6px) rotate(-0.3deg); }
 }
 
-.animate-float-3 {
-  animation: float-3 9s ease-in-out infinite;
+.animate-news-drift-1 {
+  animation: newspaper-drift-1 12s ease-in-out infinite;
+}
+
+.animate-news-drift-2 {
+  animation: newspaper-drift-2 14s ease-in-out infinite;
+}
+
+.animate-news-drift-3 {
+  animation: newspaper-drift-3 16s ease-in-out infinite;
 }
 
 /* Infinite Tilted Marquee Tape animations */

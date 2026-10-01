@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TiltedMarquee = () => {
-  const text1 = "WRITE BEAUTIFULLY 🌐 READ EFFORTLESSLY 🌐 BLOGIFY JOURNAL 🌐 EDITORIAL ESSAYS 🌐 ";
-  const text2 = "🌐 THE BRAIN DUMP 🌐 IDEAS WORTH SHARING 🌐 DEVELOPER INSIGHTS 🌐 CREATIVE MINDS 🌐 ";
+  const text1 = "WRITE BEAUTIFULLY ❖ READ EFFORTLESSLY ✦ THE DAILY BLOGIFY ❖ EDITORIAL ESSAYS ✦ LATE CITY EDITION ❖ ";
+  const text2 = "✦ IDEAS WORTH SHARING ❖ DISPATCHES & PERSPECTIVES ✦ SPECIAL BROADSHEET ❖ CREATIVE MINDS ✦ CURATED JOURNAL ❖ ";
 
   // Repeat text to make it loop infinitely
   const repeatedText1 = text1.repeat(3);
