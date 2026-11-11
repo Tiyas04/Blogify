@@ -32,7 +32,13 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           {/* Logo Section */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2.5">
+            {/* Favicon SVG inline icon */}
+            <img
+              src="/favicon.svg"
+              alt="Blogify logo"
+              className="w-9 h-9 rounded-xl"
+            />
             <span className="font-serif text-2xl font-black tracking-tight text-text-primary">
               Blogify<span className="text-accent-primary">.</span>
             </span>
